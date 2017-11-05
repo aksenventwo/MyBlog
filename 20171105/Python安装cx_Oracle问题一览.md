@@ -6,7 +6,7 @@
 
 [原文在这](https://oracle.github.io/odpi/doc/installation.html#oracle-client-and-database-versions)
 
-根据提示安装好Oracle的客户端后，环境变量的设置分很重要，这里举例说明：
+根据提示安装好Oracle的客户端后，环境变量的设置很重要，这里举例说明：
 
 - 安装Oracle客户
 	
@@ -26,15 +26,17 @@
 上面的步骤执行之前生成的，导致它启动虚拟环境的脚本activae没有写入这个环境变量，修改即可。
 
 	vim /xxx/venv/Scripts/activate
-	添加
+	
+添加
 	export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2
-	他就可以在虚拟环境下使用了，
+
+它就可以在虚拟环境下使用了。
 
 ### 中文乱码问题
 
 在对Oracle数据操作时，必须要解决的就是字符集的问题，这里有三个主要地方，数据库的字符集设置，程序运行环境的字符集，和需要插入数据的的字符集。
 
-++三者统一，则显示正常++。
+*三者统一，则显示正常* 
 
 还有就是可以不管数据库字符集是什么，程序运行环境的字符集和插入数据的字符集一致也可以显示正常。
 

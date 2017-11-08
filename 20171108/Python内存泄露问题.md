@@ -14,9 +14,9 @@
 ### 内存泄露解决前1小时
 善用搜索，找出导致内存泄露的原因。因为是用Python写的同步程序，所以指定Python内存泄露搜索即可。Pythonn是用垃圾回收机制的，它最主要的部分是通过引用计数来实现，一块内存，被一个变量引用一次就加一，当这块内存的引用计数为0时，即表示没有任何变量再引用它，它就会被Python的垃圾回收工人回收，也就是内存释放。所以反过来，当你的Python程序发生额内存泄露问题是，可以肯定是某些使用了大块内存的对象的引用计数不为0，导致Python没有回收这个资源，造成了内存的长期占有，时间越久，导致可用的内存越来越少。终于造成之后的程序无内存可用的情况。因为Python不需要手动释放内存，导致用Python的人对内存管理的疏忽和错误理解。今天就通过这个问题，初步的了解到了Python的内存管理。
 
-- 造成Python内存泄露的原因
+#### 造成Python内存泄露的原因
 
-1.错误使用list和dict
+1. 错误使用list和dict
 	
 	```
 	>>> a = []
@@ -37,20 +37,21 @@
 2. 对象的循环引用
 先推荐一篇博客，*weakref-Garbage-Collectable References to Object*，主要讲述Python的弱引用和gc机制，当然它也描述了对象的循环引用问题。这里以代码为例：
 
-	class A(objet):
-		def __init__(self, name):
-			self.name = name
-			self.other = other
+```class A(objet):
+	def __init__(self, name):
+		self.name = name
+		self.other = other
 
-		def set_next(self, other):
-			self.other = other
+	def set_next(self, other):
+		self.other = other
 
-	a = A('a')
-	b = A('b')
-	c = A('c')
-	a.set_next(b)
-	b.set_next(c)
-	c.set_next(a)
+a = A('a')
+b = A('b')
+c = A('c')
+a.set_next(b)
+b.set_next(c)
+c.set_next(a)
+```
 
 上面的代码演示了a,b,c三个对象循环用的情况，
 

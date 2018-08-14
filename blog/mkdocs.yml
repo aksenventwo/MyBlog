@@ -1,0 +1,14 @@
+site_name: Edpzou blog
+theme: readable
+pages:
+  - Home: index.md
+  - Python: 
+    - 'Python 程序部署': 'python/python-deploy.md'
+    - '偶遇Python内存泄露': 'python/python-memory-leak.md'
+    - 'Python安装cx_Oracle问题一览': 'python/python-install-cx_Oracle.md'
+  - Os:
+    - 'CENTOS6下升级PYTHON到2.7极简过程': 'os/os-centos-upgrade-python.md'
+  - Tools: 
+    - 'Jupyterhub 部署教程': 'tools/jupyterhub-deploy.md'
+    - 'Antlr4 安装教程': 'tools/antlr4-install.md'
+  - About: about.md

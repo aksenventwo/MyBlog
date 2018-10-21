@@ -1,0 +1,861 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-0.17.5, mkdocs-material-2.9.2">
+    
+    
+      
+        <title>Jupyterhub 部署教程 - Edpzou</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.ba0fd1a6.css">
+      
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    <body dir="ltr">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#jupyterhub" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Edpzou" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                Edpzou
+              </span>
+              <span class="md-header-nav__topic">
+                Jupyterhub 部署教程
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <span class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </span>
+    Edpzou
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Python
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Python
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../python/python-decraoter/" title="PYTHON之装饰器详解" class="md-nav__link">
+      PYTHON之装饰器详解
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Tools
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Tools
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Jupyterhub 部署教程
+      </label>
+    
+    <a href="./" title="Jupyterhub 部署教程" class="md-nav__link md-nav__link--active">
+      Jupyterhub 部署教程
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jupyterhub" title="Jupyterhub实战" class="md-nav__link">
+    Jupyterhub实战
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="1. 安装环境准备" class="md-nav__link">
+    1. 安装环境准备
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-configurable-http-proxy" title="1.1 安装 configurable http proxy" class="md-nav__link">
+    1.1 安装 configurable http proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-multi-user-hub-jupyter-notebook" title="1.2 安装 multi-user Hub 和 Jupyter notebook" class="md-nav__link">
+    1.2 安装 multi-user Hub 和 Jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-jupyterhub" title="1.3 启动 jupyterhub 测试是否安装成功" class="md-nav__link">
+    1.3 启动 jupyterhub 测试是否安装成功
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="2. 使用配置文件" class="md-nav__link">
+    2. 使用配置文件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" title="2.1 生成默认配置文件" class="md-nav__link">
+    2.1 生成默认配置文件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-jupyterhub" title="2.1.1 使用配置文件启动 Jupyterhub" class="md-nav__link">
+    2.1.1 使用配置文件启动 Jupyterhub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-admin" title="2.2 指定 Admin 用户" class="md-nav__link">
+    2.2 指定 Admin 用户
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" title="2.3 设置用户登录的文件夹路径" class="md-nav__link">
+    2.3 设置用户登录的文件夹路径
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" title="2.4 设置本地用户登录" class="md-nav__link">
+    2.4 设置本地用户登录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" title="2.5 使用可选的第三方认证登录" class="md-nav__link">
+    2.5 使用可选的第三方认证登录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#251" title="2.5.1 安装验证插件、" class="md-nav__link">
+    2.5.1 安装验证插件、
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252-github" title="2.5.2 开启Github验证插件， 写入配置文件即可" class="md-nav__link">
+    2.5.2 开启Github验证插件， 写入配置文件即可
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#253-githuboauth-application" title="2.5.3 在Github上注册一个OAuth application" class="md-nav__link">
+    2.5.3 在Github上注册一个OAuth application
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" title="3. 常见问题" class="md-nav__link">
+    3. 常见问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tornado" title="3.1 tornado 版本问题" class="md-nav__link">
+    3.1 tornado 版本问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configurable-http-proxy" title="3.2 configurable-http-proxy 问题" class="md-nav__link">
+    3.2 configurable-http-proxy 问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../antlr4-install/" title="Antlr4 安装教程" class="md-nav__link">
+      Antlr4 安装教程
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      机器学习
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        机器学习
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../machine/math/daoshu/" title="数学篇--导数概念" class="md-nav__link">
+      数学篇--导数概念
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jupyterhub" title="Jupyterhub实战" class="md-nav__link">
+    Jupyterhub实战
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" title="1. 安装环境准备" class="md-nav__link">
+    1. 安装环境准备
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-configurable-http-proxy" title="1.1 安装 configurable http proxy" class="md-nav__link">
+    1.1 安装 configurable http proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-multi-user-hub-jupyter-notebook" title="1.2 安装 multi-user Hub 和 Jupyter notebook" class="md-nav__link">
+    1.2 安装 multi-user Hub 和 Jupyter notebook
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-jupyterhub" title="1.3 启动 jupyterhub 测试是否安装成功" class="md-nav__link">
+    1.3 启动 jupyterhub 测试是否安装成功
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" title="2. 使用配置文件" class="md-nav__link">
+    2. 使用配置文件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" title="2.1 生成默认配置文件" class="md-nav__link">
+    2.1 生成默认配置文件
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211-jupyterhub" title="2.1.1 使用配置文件启动 Jupyterhub" class="md-nav__link">
+    2.1.1 使用配置文件启动 Jupyterhub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-admin" title="2.2 指定 Admin 用户" class="md-nav__link">
+    2.2 指定 Admin 用户
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" title="2.3 设置用户登录的文件夹路径" class="md-nav__link">
+    2.3 设置用户登录的文件夹路径
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" title="2.4 设置本地用户登录" class="md-nav__link">
+    2.4 设置本地用户登录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" title="2.5 使用可选的第三方认证登录" class="md-nav__link">
+    2.5 使用可选的第三方认证登录
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#251" title="2.5.1 安装验证插件、" class="md-nav__link">
+    2.5.1 安装验证插件、
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#252-github" title="2.5.2 开启Github验证插件， 写入配置文件即可" class="md-nav__link">
+    2.5.2 开启Github验证插件， 写入配置文件即可
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#253-githuboauth-application" title="2.5.3 在Github上注册一个OAuth application" class="md-nav__link">
+    2.5.3 在Github上注册一个OAuth application
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" title="3. 常见问题" class="md-nav__link">
+    3. 常见问题
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-tornado" title="3.1 tornado 版本问题" class="md-nav__link">
+    3.1 tornado 版本问题
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configurable-http-proxy" title="3.2 configurable-http-proxy 问题" class="md-nav__link">
+    3.2 configurable-http-proxy 问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>Jupyterhub 部署教程</h1>
+                
+                <h2 id="jupyterhub">Jupyterhub实战</h2>
+<p>这是一篇参照<code>Jupyterhub</code>官方文档而写的备忘，它主要用于已经阅读过<code>Jupyterhub</code>官方文档的人作为备忘录使用，也可作为下次部署的指导进行快速部署。</p>
+<h2 id="1">1. 安装环境准备</h2>
+<ol>
+<li>nodejs</li>
+<li>Python3.4</li>
+</ol>
+<h3 id="11-configurable-http-proxy">1.1 安装 configurable http proxy</h3>
+<pre><code class="shell">npm install -g configurable-http-proxy
+</code></pre>
+
+<h3 id="12-multi-user-hub-jupyter-notebook">1.2 安装 multi-user Hub 和 Jupyter notebook</h3>
+<pre><code class="shell">pip3 install virtualenv
+virtualenv -p python3 ~/py3env
+source ~/py3env/bin/activiate
+pip3 install jupyterhub
+pip3 install jupyter
+</code></pre>
+
+<p>更详细的安装文档在Jupyterhub的官方文档上<a href="http://jupyterhub.readthedocs.io/en/latest/quickstart.html">Install</a></p>
+<h3 id="13-jupyterhub">1.3 启动 jupyterhub 测试是否安装成功</h3>
+<pre><code class="shell">jupyterhub
+</code></pre>
+
+<h2 id="2">2. 使用配置文件</h2>
+<ol>
+<li>生成默认配置文件</li>
+<li>指定 Admin 用户</li>
+<li>设置用户登录的文件夹路径</li>
+<li>设置本地用户登录</li>
+<li>使用可选的第三方认证登录</li>
+</ol>
+<h3 id="21">2.1 生成默认配置文件</h3>
+<p>生成的配置文件默认是 <code>jupyterhub_config.py</code>:</p>
+<pre><code class="shell"># 当前文件夹
+jupyterhub --generate-config
+
+# 指定文件夹
+jupyterhub --generate-config /etc/jupyterhub/jupyterhub_config.py
+</code></pre>
+
+<h4 id="211-jupyterhub">2.1.1 使用配置文件启动 <code>Jupyterhub</code></h4>
+<pre><code class="shell">jupyterhub -f /etc/jupyterhub/jupyterhub_config.py
+</code></pre>
+
+<h4 id="22-admin">2.2 指定 Admin 用户</h4>
+<p>编辑配置文件：</p>
+<pre><code class="shell">vi /etc/jupyterhub/jupyterhub_config.py
+</code></pre>
+
+<p>在<code>vim</code>的非插入模式下键入<code>/</code>进行查找，如：</p>
+<pre><code>/admin_users
+</code></pre>
+
+<p>查找到如下内容，把注释取消，删除行首的<code>#</code>，如下填入你需要设置的用户名：</p>
+<pre><code>c.Authenticator.admin_users = {'aksenventwo', 'root'}
+</code></pre>
+
+<p>保存退出即可</p>
+<h4 id="23">2.3 设置用户登录的文件夹路径</h4>
+<p>同样使用<code>vim</code>的查找功能，查找<code>notebook_dir</code></p>
+<pre><code class="shell">c.Spawner.notebook_dir = '/home/aksenventwo/notebook'
+</code></pre>
+
+<h4 id="24">2.4 设置本地用户登录</h4>
+<h4 id="25">2.5 使用可选的第三方认证登录</h4>
+<p><code>Jupyterhub</code>提供了很多第三方认证的登录服务，都需要配置，比较麻烦。现在以<code>Github</code>为例：</p>
+<h4 id="251">2.5.1 安装验证插件、</h4>
+<pre><code class="shell">pip3 install oauthenticator
+</code></pre>
+
+<h4 id="252-github">2.5.2 开启<code>Github</code>验证插件， 写入配置文件即可</h4>
+<pre><code class="python">from oauthenticator.github import GitHubOAuthenticator
+c.JupyterHub.authenticator_class = GitHubOAuthenticator
+</code></pre>
+
+<h4 id="253-githuboauth-application">2.5.3 在<code>Github</code>上注册一个<code>OAuth application</code></h4>
+<p>地址在这 <a href="https://github.com/settings/applications/new">Github OAuth</a></p>
+<p>最重要的是你的回调URL，符合如下格式：</p>
+<pre><code class="shell">http[s]://[your-host]/hub/oauth_callback
+</code></pre>
+
+<p>如我的<code>Jupyterhub</code>的项目地址是<code>jupyterhub.example.com:8000</code>，那么回调URL就是<code>http://jupyterhub.example.com:8000/hub/oauth_callback</code></p>
+<p>然后在你的环境中填入环境变量，这些值在你注册<code>OA</code>成功后<code>Github</code>会给你：</p>
+<pre><code>export GITHUB_CLIENT_ID=fffffffffff
+export GITHUB_CLIENT_SECRET=fffffffffffffffffffff
+export OAUTH_CALLBACK_URL=http://jupyterhub.example.com:8000/hub/oauth_callback
+</code></pre>
+
+<p>这三个值必须使用环境变量的方式设置，写入配置文件中不生效，亲测。</p>
+<p>使用github登录的前提是在服务器上必须有同名的系统用户，否则登录会报500错误。</p>
+<h2 id="3">3. 常见问题</h2>
+<ol>
+<li>tornado 版本问题</li>
+<li>configurable-http-proxy问题</li>
+</ol>
+<h3 id="31-tornado">3.1 tornado 版本问题</h3>
+<p>tornado 的版本应该跟随你的 jupyterhub 安装时的版本，在安装其他包时会如果有tornado依赖，应该注意它的版本</p>
+<h3 id="32-configurable-http-proxy">3.2 configurable-http-proxy 问题</h3>
+<p>当你启动jupyterhub时，遇到如下问题:</p>
+<pre><code>tornado.httpclient.HTTPError: HTTP 403: Forbidden
+</code></pre>
+
+<p>很简单，只是configurable-http-proxy已经在运行了，只需要杀掉即可</p>
+<pre><code>ps aux | grep configurable-http-proxy
+</code></pre>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../python/python-decraoter/" title="PYTHON之装饰器详解" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                PYTHON之装饰器详解
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../antlr4-install/" title="Antlr4 安装教程" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Antlr4 安装教程
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.a59e2a89.js"></script>
+      
+      <script>app.initialize({version:"0.17.5",url:{base:"../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
